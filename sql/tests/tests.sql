@@ -84,10 +84,10 @@ EXEC pci_cleanup.RetireCardsTable @Execute = 1;  -- running again is harmless
 PRINT 'ok   T7 table cleared and dropped; re-run is harmless';
 GO
 -- T8: the runner scripts and the cleanup script execute as shipped.
-:r /work/sql/01_inventory_readonly.sql
-:r /work/sql/02_mask_apilog.sql
-:r /work/sql/03_retire_pt_patientcards.sql
-:r /work/sql/99_drop_objects.sql
+:r /tmp/work/sql/01_inventory_readonly.sql
+:r /tmp/work/sql/02_mask_apilog.sql
+:r /tmp/work/sql/03_retire_pt_patientcards.sql
+:r /tmp/work/sql/99_drop_objects.sql
 GO
 IF OBJECT_ID(N'pci_cleanup.RedactCardData') IS NOT NULL OR OBJECT_ID(N'pci_cleanup.MaskAudit', N'U') IS NULL
     THROW 50801, 'T8 failed: 99 should drop the helpers and keep the audit table', 1;
