@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Pay invoice (Authorize.Net Accept.js)</title>
+  <link rel="stylesheet" href="/css/site.css">
+  <!-- Sandbox. Production uses https://js.authorize.net/v1/Accept.js -->
+  <script src="https://jstest.authorize.net/v1/Accept.js" charset="utf-8"></script>
+  <script src="/js/authorize-net-payments.js"></script>
+  <script src="/js/pages/authorize-net-page.js" defer></script>
+</head>
+<body>
+  <h1>Pay invoice</h1>
+  <form id="pay" autocomplete="off" novalidate>
+    <input id="invoice" value="INV-1001" aria-label="Invoice number" readonly>
+    <input id="amount" value="25.00" aria-label="Amount" readonly>
+    <!-- No name attributes: these values cannot be posted to our server. -->
+    <input id="cc-number" inputmode="numeric" autocomplete="cc-number" placeholder="Card number">
+    <input id="cc-month" inputmode="numeric" autocomplete="cc-exp-month" placeholder="MM">
+    <input id="cc-year" inputmode="numeric" autocomplete="cc-exp-year" placeholder="YYYY">
+    <input id="cc-cvv" inputmode="numeric" autocomplete="cc-csc" placeholder="CVV">
+    <button type="submit">Pay</button>
+  </form>
+  <p id="status" role="status"></p>
+</body>
+</html>

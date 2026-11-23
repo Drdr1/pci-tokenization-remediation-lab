@@ -1,0 +1,54 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  dotnet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Build (warnings are errors, no NuGet packages)
+        run: dotnet build -c Release
+      - name: Tests (redaction fixtures, guard, gateways, API log, pages, scanner)
+        run: dotnet run -c Release --no-build --project tests/PaymentsDemo.Tests
+      - name: Scanner gate - the demo site must have no RAW card pages
+        run: dotnet run -c Release --no-build --project tools/CardFieldScanner -- src/PaymentsDemo/wwwroot --fail-on-raw
+      - name: Scanner gate - the legacy sample must be flagged
+        run: |
+          if dotnet run -c Release --no-build --project tools/CardFieldScanner -- samples/legacy-site --fail-on-raw; then
+            echo "expected RAW pages in samples/legacy-site"; exit 1
+          fi
+
+  sql:
+    runs-on: ubuntu-latest
+    services:
+      mssql:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          ACCEPT_EULA: "Y"
+          MSSQL_SA_PASSWORD: ${{ secrets.MSSQL_SA_PASSWORD || 'CiOnly!Passw0rd' }}
+        ports:
+          - 1433:1433
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for SQL Server
+        env:
+          SA_PASSWORD: ${{ secrets.MSSQL_SA_PASSWORD || 'CiOnly!Passw0rd' }}
+        run: |
+          for i in $(seq 1 60); do
+            if docker exec ${{ job.services.mssql.id }} /opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P "$SA_PASSWORD" -Q "SELECT 1" >/dev/null 2>&1; then
+              echo "ready"; exit 0
+            fi
+            sleep 2
+          done
+          echo "SQL Server did not start"; exit 1
+      - name: SQL tests (T-SQL masking parity, inventory, dry run, batches, re-run, drop guard)
+        env:
+          CONTAINER: ${{ job.services.mssql.id }}
+          SA_PASSWORD: ${{ secrets.MSSQL_SA_PASSWORD || 'CiOnly!Passw0rd' }}
+        run: sql/tests/run.sh

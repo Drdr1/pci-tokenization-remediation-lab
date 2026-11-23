@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Pay invoice (Braintree Hosted Fields)</title>
+  <link rel="stylesheet" href="/css/site.css">
+  <script src="https://js.braintreegateway.com/web/3.147.0/js/client.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.147.0/js/hosted-fields.min.js"></script>
+  <script src="/js/braintree-payments.js"></script>
+  <script src="/js/pages/braintree-page.js" defer></script>
+</head>
+<body>
+  <h1>Pay invoice</h1>
+  <form id="pay" novalidate>
+    <input id="order" value="ORD-2001" aria-label="Order" readonly>
+    <input id="amount" value="40.00" aria-label="Amount" readonly>
+    <!-- Hosted Fields renders Braintree iframes into these containers. -->
+    <div id="bt-number" class="hosted-field"></div>
+    <div id="bt-expiry" class="hosted-field"></div>
+    <div id="bt-cvv" class="hosted-field"></div>
+    <button type="submit">Pay</button>
+  </form>
+  <p id="status" role="status"></p>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BF2D0DC5-E3FB-48ED-AF1D-25C3BE75AFED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentsDemo", "src\PaymentsDemo\PaymentsDemo.csproj", "{759E573F-C9A3-457D-A757-E482D6C99945}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{550BC1D2-973A-4629-AF53-D46673D14CCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentsDemo.Tests", "tests\PaymentsDemo.Tests\PaymentsDemo.Tests.csproj", "{8FB8F6A8-5084-4C34-8889-183C69C43CBA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{AE922783-41AF-4605-85BA-439399D98BA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardFieldScanner", "tools\CardFieldScanner\CardFieldScanner.csproj", "{87B9DBF2-70A2-4729-8692-52F2A651530A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{759E573F-C9A3-457D-A757-E482D6C99945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{759E573F-C9A3-457D-A757-E482D6C99945}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{759E573F-C9A3-457D-A757-E482D6C99945}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{759E573F-C9A3-457D-A757-E482D6C99945}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FB8F6A8-5084-4C34-8889-183C69C43CBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FB8F6A8-5084-4C34-8889-183C69C43CBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FB8F6A8-5084-4C34-8889-183C69C43CBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FB8F6A8-5084-4C34-8889-183C69C43CBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87B9DBF2-70A2-4729-8692-52F2A651530A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87B9DBF2-70A2-4729-8692-52F2A651530A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87B9DBF2-70A2-4729-8692-52F2A651530A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87B9DBF2-70A2-4729-8692-52F2A651530A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{759E573F-C9A3-457D-A757-E482D6C99945} = {BF2D0DC5-E3FB-48ED-AF1D-25C3BE75AFED}
+		{8FB8F6A8-5084-4C34-8889-183C69C43CBA} = {550BC1D2-973A-4629-AF53-D46673D14CCA}
+		{87B9DBF2-70A2-4729-8692-52F2A651530A} = {AE922783-41AF-4605-85BA-439399D98BA4}
+	EndGlobalSection
+EndGlobal

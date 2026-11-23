@@ -1,0 +1,6 @@
+@model BillingModel
+@using (Html.BeginForm("Pay", "Billing")) {
+  @Html.TextBoxFor(m => m.CardNumber)
+  @Html.TextBoxFor(m => m.Cvv)
+  <button type="submit">Pay</button>
+}
